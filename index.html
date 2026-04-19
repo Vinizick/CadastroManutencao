@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Manutenção</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Overlay escuro -->
+    <div class="overlay">
+
+        <!-- Conteúdo -->
+        <header class="card">
+            <h1>Cadastro de Histórico de Manutenção</h1>
+            <p>Controle e registro de manutenções em equipamentos de T.I</p>
+
+            <button onclick="abrirForm()">Cadastrar Usuário</button>
+        </header>
+
+    </div>
+
+    <!-- MODAL (FORMULÁRIO) -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Cadastro de Usuário</h2>
+
+            <form>
+                <input type="text" placeholder="Nome" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Senha" required>
+
+                <button type="submit">Cadastrar</button>
+                <button type="button" onclick="fecharForm()">Fechar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function abrirForm() {
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function fecharForm() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+<input value="db.klyzgqrpefuqbwcxdueu.supabase.co">
+<input value="postgres">
+<input value="postgres">
+<input value="BvfZii2eOsCvnIWY">
+<input value="5432">
+</body>
+</html>

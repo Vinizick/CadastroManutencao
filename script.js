@@ -30,46 +30,23 @@ function fecharModal() {
     document.getElementById("modal").style.display = "none";
 }
 
-// CADASTRO
 async function cadastrar() {
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
-    const senha = document.getElementById("senha").value;
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+
+    if (!nome || !email || !senha) {
+        document.getElementById("msg").innerText = "Preencha todos os campos!";
+        return;
+    }
 
     const { error } = await client
-  .schema("seguranca")
-  .from("tbUsuarios")
+        .schema("seguranca")
+        .from("tbUsuarios")
         .insert([{ nome, login: email, senha }]);
 
     if (!error) {
         document.getElementById("msg").innerHTML =
             "<span class='sucesso'>Cadastro realizado com sucesso!</span>";
 
-        localStorage.setItem("primeiroAcesso", "true");
-
-        setTimeout(() => fecharModal(), 2000);
-    } else {
-        document.getElementById("msg").innerText = error.message;
-    }
-}
-
-// LOGIN
-async function logar() {
-    const email = document.getElementById("email").value;
-    const senha = document.getElementById("senha").value;
-
-    const { data } = await client
-        .from("seguranca.tbUsuarios")
-        .select("*")
-        .eq("login", email)
-        .eq("senha", senha);
-
-    if (data && data.length > 0) {
-        document.getElementById("msg").innerHTML =
-            "<span class='sucesso'>Login efetuado com sucesso!</span>";
-
-        setTimeout(() => fecharModal(), 2000);
-    } else {
-        document.getElementById("msg").innerText = "Dados inválidos";
-    }
-}
+        localStorage.setItem("prime

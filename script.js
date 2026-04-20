@@ -37,7 +37,8 @@ async function cadastrar() {
     const senha = document.getElementById("senha").value;
 
     const { error } = await client
-        .from("seguranca.tbUsuarios")
+  .schema("seguranca")
+  .from("tbUsuarios")
         .insert([{ nome, login: email, senha }]);
 
     if (!error) {

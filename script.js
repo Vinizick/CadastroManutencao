@@ -3,12 +3,11 @@ const SUPABASE_KEY = "sb_publishable_1aihTLC8jKL83lxJr-vRVg_SA9piZER";
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let primeiroAcesso = localStorage.getItem("primeiroAcesso");
-
 function abrirModal() {
     document.getElementById("modal").style.display = "block";
 
     const botoes = document.getElementById("botoes");
+    const primeiroAcesso = localStorage.getItem("primeiroAcesso");
 
     if (!primeiroAcesso) {
         document.getElementById("tituloForm").innerText = "Primeiro Acesso - Cadastro";
@@ -49,4 +48,40 @@ async function cadastrar() {
         document.getElementById("msg").innerHTML =
             "<span class='sucesso'>Cadastro realizado com sucesso!</span>";
 
-        localStorage.setItem("prime
+        localStorage.setItem("primeiroAcesso", "true");
+
+        setTimeout(() => {
+            fecharModal();
+        }, 2000);
+    } else {
+        document.getElementById("msg").innerText = error.message;
+    }
+}
+
+async function logar() {
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+
+    if (!email || !senha) {
+        document.getElementById("msg").innerText = "Preencha todos os campos!";
+        return;
+    }
+
+    const { data, error } = await client
+        .schema("seguranca")
+        .from("tbUsuarios")
+        .select("*")
+        .eq("login", email)
+        .eq("senha", senha);
+
+    if (data && data.length > 0) {
+        document.getElementById("msg").innerHTML =
+            "<span class='sucesso'>Login efetuado com sucesso!</span>";
+
+        setTimeout(() => {
+            fecharModal();
+        }, 2000);
+    } else {
+        document.getElementById("msg").innerText = "Dados inválidos";
+    }
+}

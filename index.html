@@ -2,7 +2,8 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Sistema de Manutenção de Equipamentos de T.I</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Manutenção</title>
 
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
@@ -10,18 +11,20 @@
 
 <body>
 
-<button class="btn" onclick="abrirModal()">Entrar</button>
-
 <div class="container">
     <h1>Sistema de Cadastro de Manutenção de Equipamentos de T.I</h1>
 </div>
+
+<button class="btn" onclick="abrirModal()">Entrar</button>
+
+
 <div id="modal" class="modal">
     <div class="modal-content">
 
         <h2 id="tituloForm">Cadastro</h2>
 
         <input id="nome" placeholder="Nome">
-        <input id="login" placeholder="Login">
+        <input id="email" placeholder="Email">
         <input id="senha" type="password" placeholder="Senha">
 
         <div id="botoes"></div>
@@ -31,7 +34,8 @@
         <button onclick="fecharModal()">Fechar</button>
     </div>
 </div>
-    <script src="script.js"></script>
+
+<script src="script.js"></script>
 
 </body>
 </html>

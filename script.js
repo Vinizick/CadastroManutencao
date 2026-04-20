@@ -1,13 +1,11 @@
 
-const SUPABASE_URL = "db.klyzgqrpefuqbwcxdueu.supabase.co";
+const SUPABASE_URL = "https//db.klyzgqrpefuqbwcxdueu.supabase.co";
 const SUPABASE_KEY = "BvfZii2eOsCvnIWY";
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// controle de primeiro acesso
 let primeiroAcesso = localStorage.getItem("primeiroAcesso");
 
-// abrir modal
 function abrirModal() {
     document.getElementById("modal").style.display = "block";
 
@@ -29,19 +27,19 @@ function abrirModal() {
     }
 }
 
-// fechar modal
+
 function fecharModal() {
     document.getElementById("modal").style.display = "none";
 }
 
-// cadastrar
+
 async function cadastrar() {
     const nome = document.getElementById("nome").value;
     const login = document.getElementById("login").value;
     const senha = document.getElementById("senha").value;
 
     const { error } = await client
-        .from("seguranca.tbUsuarios") importante por causa do schema
+        .from("seguranca.tbUsuarios")
         .insert([{ nome, login, senha }]);
 
     if (!error) {
